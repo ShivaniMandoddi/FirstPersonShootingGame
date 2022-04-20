@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     {
         gunController=GetComponentInChildren<GunController>();
         
+        
     }
 
     // Update is called once per frame
@@ -80,5 +81,12 @@ public class PlayerController : MonoBehaviour
             health = Mathf.Clamp(health + 50, 0, maxHealth);
             Destroy(collision.gameObject);
         }
+    }
+   public void PlayerWin()
+    {
+        IsGameover = true;
+        GameObject temp = Instantiate(Steve, transform.position, Quaternion.identity);
+        temp.GetComponent<Animator>().SetTrigger("Dance");
+        Destroy(gameObject);
     }
 }

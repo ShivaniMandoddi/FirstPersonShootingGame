@@ -11,17 +11,25 @@ public class GunController : MonoBehaviour
     GameObject temp;
     PlayerController playerController;
     public Transform bulletpoint;
+    SpawingEnemies spawingEnemies;
+    int k = 0;
     void Start()
     {
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+        spawingEnemies = GameObject.Find("SpawnEnemies").GetComponent<SpawingEnemies>();
         
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(spawingEnemies.number==k)
+        {
+            playerController.PlayerWin();
+        }
 
         if (Input.GetKeyDown(KeyCode.H))                                 // Hiding the gun
             animator.SetBool("IsHide",!animator.GetBool("IsHide"));
@@ -39,7 +47,7 @@ public class GunController : MonoBehaviour
                     GameObject enemyhit = hit.collider.gameObject; 
                     if (enemyhit.tag == "Enemy")           //Bullet hitting to enemy
                     {
-                       
+                        k++;
                         if (Random.Range(0, 5) < 2)
                         {
                             enemyhit.GetComponent<EnemyController>().state = EnemyController.STATE.DEAD;

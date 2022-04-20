@@ -33,5 +33,6 @@ public class SpawingEnemies : MonoBehaviour
             //newEnemyPosition.y = Terrain.activeTerrain.SampleHeight(newEnemyPosition);
             
         }
+
     }
 }
