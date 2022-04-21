@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
 
@@ -62,9 +63,12 @@ public class PlayerController : MonoBehaviour
     }
     public void PlayerDeath()
     {
-        GameObject temp = Instantiate(Steve, transform.position, Quaternion.identity);
+        GameObject temp = Instantiate(Steve,this. transform.position, Quaternion.identity);
+        //temp.transform.position = new Vector3(transform.position.x, 16.14f, transform.position.z);
         temp.GetComponent<Animator>().SetTrigger("Death");
+        GameObject.Find("SpawnEnemies").GetComponent<SpawingEnemies>().GameOver("Lost Game");
         Destroy(gameObject);
+        //Destroy(gameObject);
         
     }
     private void OnCollisionEnter(Collision collision)
@@ -87,6 +91,8 @@ public class PlayerController : MonoBehaviour
         IsGameover = true;
         GameObject temp = Instantiate(Steve, transform.position, Quaternion.identity);
         temp.GetComponent<Animator>().SetTrigger("Dance");
+        GameObject.Find("SpawnEnemies").GetComponent<SpawingEnemies>().GameOver("Won Game");
         Destroy(gameObject);
     }
+   
 }

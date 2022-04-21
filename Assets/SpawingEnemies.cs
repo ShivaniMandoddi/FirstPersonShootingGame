@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class SpawingEnemies : MonoBehaviour
 {
@@ -9,6 +11,8 @@ public class SpawingEnemies : MonoBehaviour
     public GameObject enemyPrefab;
     public int number;
     public int radius;
+    public Text gameOverText;
+    public GameObject buttons;
     void Start()
     {
         SpawnEnemy(number);
@@ -34,5 +38,18 @@ public class SpawingEnemies : MonoBehaviour
             
         }
 
+    }
+    public void GameOver(string text)
+    {
+        buttons.SetActive(true);
+        gameOverText.text = text;
+    }
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    public void Quits()
+    {
+        SceneManager.LoadScene(0);
     }
 }

@@ -62,7 +62,7 @@ public class EnemyController : MonoBehaviour
         
         AllAnimationFalse();
         animator.SetBool("IsWalk", true);
-        agent.stoppingDistance = 6f;
+        agent.stoppingDistance = 3f;
         if(playerController.IsGameover==false)
         {
             agent.SetDestination(target.transform.position);
